@@ -124,7 +124,7 @@ namespace NWLabs.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult myAccount(int id)
+        public ActionResult myAccount()
         {
            
             return View();
