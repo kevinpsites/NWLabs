@@ -194,6 +194,7 @@
     <Compile Include="Models\Material.cs">
       <DependentUpon>NWLDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\myAccount.cs" />
     <Compile Include="Models\NWLDatabase.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
