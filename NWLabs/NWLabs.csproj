@@ -254,6 +254,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Dimages\NorthWestLogo.png" />
+    <Content Include="Content\Dimages\Pentelute-Lab-MIT-Landing-PageDSC03555.jpg" />
+    <Content Include="Content\Dimages\used-lab-equipment.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
