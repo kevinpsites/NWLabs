@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f543e35ff6d34318bcb279d29e6bcea8" Name="Diagram1">
+        <EntityTypeShape EntityType="NWlabsModel.Account" Width="1.5" PointX="1.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Assay" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Base_Prices" Width="1.5" PointX="10.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Compound" Width="1.5" PointX="1.5" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Contact" Width="1.5" PointX="11.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Credential" Width="1.5" PointX="6" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Employee_Tests" Width="1.5" PointX="10.5" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Employee" Width="1.5" PointX="8.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Invoice_Payments" Width="1.5" PointX="15" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Invoice" Width="1.5" PointX="12.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Material" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Order_Details" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Order" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Payment" Width="1.5" PointX="12.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Prereq_Test" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Role" Width="1.5" PointX="3.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Sequence" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Solvent" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Status" Width="1.5" PointX="1.5" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.sysdiagram" Width="1.5" PointX="8.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Test_Materials" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Test_Order_Details" Width="1.5" PointX="8.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Test" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NWlabsModel.Title" Width="1.5" PointX="6" PointY="16.625" IsExpanded="true" />
+        <AssociationConnector Association="NWlabsModel.FK_Contacts_Accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Orders_Accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Order_Details_Assays" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Invoices_Base_Prices" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Sequences_Compounds" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Contacts_Credentials" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Credentials_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Employees_Credentials" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Employee_Tests_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Employee_Tests_Test_Order_Details" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Invoices_Employee_Tests" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Employees_Titles" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Invoice_Payments_Invoices" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Invoice_Payments_Payments" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Invoices_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Invoices_Test_Materials" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Test_Materials_Materials" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Order_Details_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Order_Details_Sequences" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Order_Details_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Test_Order_Details_Order_Details" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Orders_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Prereq_Test_Tests" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Prereq_Test_Tests1" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Test_Order_Details_Solvents" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Test_Order_Details_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Test_Materials_Tests" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.FK_Test_Order_Details_Tests" ManuallyRouted="false" />
+        <AssociationConnector Association="NWlabsModel.Assay_Tests" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

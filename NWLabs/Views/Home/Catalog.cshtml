@@ -1,0 +1,45 @@
+﻿@model NWLabs.Models.Catalog
+@{
+    ViewBag.Title = "Catalog";
+}
+
+<h2>Catalog</h2>
+
+<div class="panel-group" id="accordion">
+    @foreach (var item in Model.assay_tests)
+    {
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-@item.assay.AssayID">
+                    <h4 class="panel-title" style="display:inline;">
+                        @item.assay.AssayName
+                    </h4> -
+                    <p class="text-muted" style="display:inline;">@item.assay.AssayProtocol</p>
+                </a>
+            </div>
+
+            <div id="collapse-@item.assay.AssayID" class="panel-collapse collapse">
+                <div class="panel-body">
+                    Hello
+                    <br />
+                    @foreach (var test in item.test)
+                    {
+                        <div class="row">
+                            <div class="col-xs-offset-4 col-xs-4">
+                                <a data-toggle="collapse" href="#answer-@item.assay.AssayID@test.TestID">@test.TestName</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div id="answer-@item.assay.AssayID@test.TestID" class="panel-collapse collapse">
+                                <p>@item.assay.AssayDesc</p>
+                            </div>
+                        </div>
+                    }
+                   
+                </div>
+            </div>
+
+        </div>
+        
+    }
+</div>

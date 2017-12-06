@@ -1,0 +1,1849 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NWlabsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="30" />
+          <Property Name="Address" Type="nvarchar" MaxLength="30" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="30" />
+          <Property Name="StateOrProvince" Type="nvarchar" MaxLength="30" />
+          <Property Name="Country" Type="nvarchar" MaxLength="30" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+          <Property Name="Balance" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Assay_Tests">
+          <Key>
+            <PropertyRef Name="AssayId" />
+            <PropertyRef Name="TestID" />
+          </Key>
+          <Property Name="AssayId" Type="int" Nullable="false" />
+          <Property Name="TestID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Assays">
+          <Key>
+            <PropertyRef Name="AssayID" />
+          </Key>
+          <Property Name="AssayID" Type="int" Nullable="false" />
+          <Property Name="AssayName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="AssayDesc" Type="nvarchar" MaxLength="50" />
+          <Property Name="AssayProtocol" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Base_Prices">
+          <Key>
+            <PropertyRef Name="BasePriceID" />
+          </Key>
+          <Property Name="BasePriceID" Type="int" Nullable="false" />
+          <Property Name="BasePrice" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Compounds">
+          <Key>
+            <PropertyRef Name="LTNumber" />
+          </Key>
+          <Property Name="LTNumber" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Quant_Mg" Type="decimal" Precision="10" Scale="5" Nullable="false" />
+          <Property Name="ArrivalDate" Type="date" />
+          <Property Name="RecievedByEmpID" Type="int" />
+          <Property Name="DueDate" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="MTD" Type="decimal" Precision="10" Scale="5" Nullable="false" />
+          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="Contacts">
+          <Key>
+            <PropertyRef Name="ContactID" />
+          </Key>
+          <Property Name="ContactID" Type="int" Nullable="false" />
+          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="ContactFirstName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ContactLastName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ContactPhone" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="ContactEmail" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="CredID" Type="int" />
+        </EntityType>
+        <EntityType Name="Credentials">
+          <Key>
+            <PropertyRef Name="CredID" />
+          </Key>
+          <Property Name="CredID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee_Tests">
+          <Key>
+            <PropertyRef Name="EmployeeTestID" />
+          </Key>
+          <Property Name="EmployeeTestID" Type="int" Nullable="false" />
+          <Property Name="EmpID" Type="int" />
+          <Property Name="TODID" Type="int" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="EmpID" Type="int" Nullable="false" />
+          <Property Name="EmpFirstName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="EmpLastName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="TitleID" Type="int" />
+          <Property Name="EmpEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmpPhone" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="CredID" Type="int" />
+        </EntityType>
+        <EntityType Name="Invoice_Payments">
+          <Key>
+            <PropertyRef Name="InvoicePaymentID" />
+          </Key>
+          <Property Name="InvoicePaymentID" Type="int" Nullable="false" />
+          <Property Name="InvoiceID" Type="int" />
+          <Property Name="PaymentID" Type="int" />
+          <Property Name="AmountApplied" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Invoices">
+          <Key>
+            <PropertyRef Name="InvoiceID" />
+          </Key>
+          <Property Name="InvoiceID" Type="int" Nullable="false" />
+          <Property Name="TestMaterialID" Type="int" />
+          <Property Name="EmployeeTestID" Type="int" />
+          <Property Name="BasePriceID" Type="int" />
+          <Property Name="InvoiceTotal" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="PaymentDueDate" Type="date" />
+          <Property Name="EarlyPaymentDueDate" Type="date" />
+          <Property Name="DiscountRate" Type="decimal" Precision="5" Scale="4" />
+          <Property Name="OrderID" Type="int" />
+        </EntityType>
+        <EntityType Name="Materials">
+          <Key>
+            <PropertyRef Name="MaterialID" />
+          </Key>
+          <Property Name="MaterialID" Type="int" Nullable="false" />
+          <Property Name="MaterialCost" Type="decimal" Precision="6" Scale="2" />
+        </EntityType>
+        <EntityType Name="Order_Details">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="int" Nullable="false" />
+          <Property Name="OrderID" Type="int" />
+          <Property Name="AssayID" Type="int" />
+          <Property Name="SeqID" Type="int" />
+          <Property Name="OrderDetailStatus" Type="int" />
+          <Property Name="Authorized" Type="bit" />
+          <Property Name="DataReport" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="AccountID" Type="int" />
+          <Property Name="BasePriceID" Type="int" />
+          <Property Name="OrderStatusID" Type="int" />
+          <Property Name="RushOrder" Type="bit" />
+          <Property Name="SummaryReport" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="int" Nullable="false" />
+          <Property Name="PaymentAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PaymentDate" Type="date" />
+          <Property Name="AccountID" Type="int" />
+        </EntityType>
+        <EntityType Name="Prereq_Test">
+          <Key>
+            <PropertyRef Name="PrereqTestID" />
+          </Key>
+          <Property Name="PrereqTestID" Type="int" Nullable="false" />
+          <Property Name="TestID" Type="int" Nullable="false" />
+          <Property Name="ConditionaltestID" Type="int" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="RoleDesc" Type="nvarchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="Sequences">
+          <Key>
+            <PropertyRef Name="SeqID" />
+          </Key>
+          <Property Name="SeqID" Type="int" Nullable="false" />
+          <Property Name="LTNumber" Type="int" Nullable="false" />
+          <Property Name="SeqCode" Type="int" Nullable="false" />
+          <Property Name="SampleAppearance" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DocumentedWeight" Type="decimal" Precision="10" Scale="5" Nullable="false" />
+          <Property Name="MolecularMass" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="ActualWeight" Type="decimal" Precision="10" Scale="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Solvents">
+          <Key>
+            <PropertyRef Name="SeqID" />
+            <PropertyRef Name="TestTubeNo" />
+          </Key>
+          <Property Name="SeqID" Type="int" Nullable="false" />
+          <Property Name="TestTubeNo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="StatusDesc" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Test_Materials">
+          <Key>
+            <PropertyRef Name="TestMaterialID" />
+          </Key>
+          <Property Name="TestMaterialID" Type="int" Nullable="false" />
+          <Property Name="TestID" Type="int" />
+          <Property Name="MaterialID" Type="int" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="Test_Order_Details">
+          <Key>
+            <PropertyRef Name="TODID" />
+          </Key>
+          <Property Name="TODID" Type="int" Nullable="false" />
+          <Property Name="OrderDetailID" Type="int" />
+          <Property Name="TestID" Type="int" />
+          <Property Name="SeqID" Type="int" />
+          <Property Name="TestTubeNo" Type="int" />
+          <Property Name="TestStatusID" Type="int" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="RawResults" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tests">
+          <Key>
+            <PropertyRef Name="TestID" />
+          </Key>
+          <Property Name="TestID" Type="int" Nullable="false" />
+          <Property Name="TestName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="AvgTime" Type="decimal" Precision="6" Scale="2" />
+        </EntityType>
+        <EntityType Name="Titles">
+          <Key>
+            <PropertyRef Name="TitleID" />
+          </Key>
+          <Property Name="TitleID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Wage" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Assay_Tests_Assays">
+          <End Role="Assays" Type="Self.Assays" Multiplicity="1" />
+          <End Role="Assay_Tests" Type="Self.Assay_Tests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assays">
+              <PropertyRef Name="AssayID" />
+            </Principal>
+            <Dependent Role="Assay_Tests">
+              <PropertyRef Name="AssayId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assay_Tests_Tests">
+          <End Role="Tests" Type="Self.Tests" Multiplicity="1" />
+          <End Role="Assay_Tests" Type="Self.Assay_Tests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="TestID" />
+            </Principal>
+            <Dependent Role="Assay_Tests">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacts_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacts_Credentials">
+          <End Role="Credentials" Type="Self.Credentials" Multiplicity="0..1" />
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Credentials">
+              <PropertyRef Name="CredID" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="CredID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Credentials_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Credentials" Type="Self.Credentials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="Credentials">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Tests_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Employee_Tests" Type="Self.Employee_Tests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="Employee_Tests">
+              <PropertyRef Name="EmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Tests_Test_Order_Details">
+          <End Role="Test_Order_Details" Type="Self.Test_Order_Details" Multiplicity="0..1" />
+          <End Role="Employee_Tests" Type="Self.Employee_Tests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test_Order_Details">
+              <PropertyRef Name="TODID" />
+            </Principal>
+            <Dependent Role="Employee_Tests">
+              <PropertyRef Name="TODID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Credentials">
+          <End Role="Credentials" Type="Self.Credentials" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Credentials">
+              <PropertyRef Name="CredID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="CredID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Titles">
+          <End Role="Titles" Type="Self.Titles" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Titles">
+              <PropertyRef Name="TitleID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="TitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Payments_Invoices">
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="0..1" />
+          <End Role="Invoice_Payments" Type="Self.Invoice_Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoices">
+              <PropertyRef Name="InvoiceID" />
+            </Principal>
+            <Dependent Role="Invoice_Payments">
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Payments_Payments">
+          <End Role="Payments" Type="Self.Payments" Multiplicity="0..1" />
+          <End Role="Invoice_Payments" Type="Self.Invoice_Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payments">
+              <PropertyRef Name="PaymentID" />
+            </Principal>
+            <Dependent Role="Invoice_Payments">
+              <PropertyRef Name="PaymentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoices_Base_Prices">
+          <End Role="Base_Prices" Type="Self.Base_Prices" Multiplicity="0..1" />
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Base_Prices">
+              <PropertyRef Name="BasePriceID" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="BasePriceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoices_Employee_Tests">
+          <End Role="Employee_Tests" Type="Self.Employee_Tests" Multiplicity="0..1" />
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee_Tests">
+              <PropertyRef Name="EmployeeTestID" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="EmployeeTestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoices_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoices_Test_Materials">
+          <End Role="Test_Materials" Type="Self.Test_Materials" Multiplicity="0..1" />
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test_Materials">
+              <PropertyRef Name="TestMaterialID" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="TestMaterialID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Details_Assays">
+          <End Role="Assays" Type="Self.Assays" Multiplicity="0..1" />
+          <End Role="Order_Details" Type="Self.Order_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assays">
+              <PropertyRef Name="AssayID" />
+            </Principal>
+            <Dependent Role="Order_Details">
+              <PropertyRef Name="AssayID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Details_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="Order_Details" Type="Self.Order_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Order_Details">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Details_Sequences">
+          <End Role="Sequences" Type="Self.Sequences" Multiplicity="0..1" />
+          <End Role="Order_Details" Type="Self.Order_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sequences">
+              <PropertyRef Name="SeqID" />
+            </Principal>
+            <Dependent Role="Order_Details">
+              <PropertyRef Name="SeqID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Details_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Order_Details" Type="Self.Order_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Order_Details">
+              <PropertyRef Name="OrderDetailStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="OrderStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prereq_Test_Tests">
+          <End Role="Tests" Type="Self.Tests" Multiplicity="1" />
+          <End Role="Prereq_Test" Type="Self.Prereq_Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="TestID" />
+            </Principal>
+            <Dependent Role="Prereq_Test">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prereq_Test_Tests1">
+          <End Role="Tests" Type="Self.Tests" Multiplicity="0..1" />
+          <End Role="Prereq_Test" Type="Self.Prereq_Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="TestID" />
+            </Principal>
+            <Dependent Role="Prereq_Test">
+              <PropertyRef Name="ConditionaltestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sequences_Compounds">
+          <End Role="Compounds" Type="Self.Compounds" Multiplicity="1" />
+          <End Role="Sequences" Type="Self.Sequences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compounds">
+              <PropertyRef Name="LTNumber" />
+            </Principal>
+            <Dependent Role="Sequences">
+              <PropertyRef Name="LTNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Materials_Materials">
+          <End Role="Materials" Type="Self.Materials" Multiplicity="0..1" />
+          <End Role="Test_Materials" Type="Self.Test_Materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materials">
+              <PropertyRef Name="MaterialID" />
+            </Principal>
+            <Dependent Role="Test_Materials">
+              <PropertyRef Name="MaterialID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Materials_Tests">
+          <End Role="Tests" Type="Self.Tests" Multiplicity="0..1" />
+          <End Role="Test_Materials" Type="Self.Test_Materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="TestID" />
+            </Principal>
+            <Dependent Role="Test_Materials">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Order_Details_Order_Details">
+          <End Role="Order_Details" Type="Self.Order_Details" Multiplicity="0..1" />
+          <End Role="Test_Order_Details" Type="Self.Test_Order_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_Details">
+              <PropertyRef Name="OrderDetailID" />
+            </Principal>
+            <Dependent Role="Test_Order_Details">
+              <PropertyRef Name="OrderDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Order_Details_Solvents">
+          <End Role="Solvents" Type="Self.Solvents" Multiplicity="0..1" />
+          <End Role="Test_Order_Details" Type="Self.Test_Order_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Solvents">
+              <PropertyRef Name="SeqID" />
+              <PropertyRef Name="TestTubeNo" />
+            </Principal>
+            <Dependent Role="Test_Order_Details">
+              <PropertyRef Name="SeqID" />
+              <PropertyRef Name="TestTubeNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Order_Details_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Test_Order_Details" Type="Self.Test_Order_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Test_Order_Details">
+              <PropertyRef Name="TestStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Order_Details_Tests">
+          <End Role="Tests" Type="Self.Tests" Multiplicity="0..1" />
+          <End Role="Test_Order_Details" Type="Self.Test_Order_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="TestID" />
+            </Principal>
+            <Dependent Role="Test_Order_Details">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NWlabsModelStoreContainer">
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Assay_Tests" EntityType="Self.Assay_Tests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Assays" EntityType="Self.Assays" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Base_Prices" EntityType="Self.Base_Prices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Compounds" EntityType="Self.Compounds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Credentials" EntityType="Self.Credentials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee_Tests" EntityType="Self.Employee_Tests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice_Payments" EntityType="Self.Invoice_Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Materials" EntityType="Self.Materials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_Details" EntityType="Self.Order_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prereq_Test" EntityType="Self.Prereq_Test" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sequences" EntityType="Self.Sequences" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Solvents" EntityType="Self.Solvents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Test_Materials" EntityType="Self.Test_Materials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Test_Order_Details" EntityType="Self.Test_Order_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tests" EntityType="Self.Tests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Titles" EntityType="Self.Titles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Assay_Tests_Assays" Association="Self.FK_Assay_Tests_Assays">
+            <End Role="Assays" EntitySet="Assays" />
+            <End Role="Assay_Tests" EntitySet="Assay_Tests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assay_Tests_Tests" Association="Self.FK_Assay_Tests_Tests">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="Assay_Tests" EntitySet="Assay_Tests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacts_Accounts" Association="Self.FK_Contacts_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacts_Credentials" Association="Self.FK_Contacts_Credentials">
+            <End Role="Credentials" EntitySet="Credentials" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Credentials_Roles" Association="Self.FK_Credentials_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Credentials" EntitySet="Credentials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Tests_Employees" Association="Self.FK_Employee_Tests_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Employee_Tests" EntitySet="Employee_Tests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Tests_Test_Order_Details" Association="Self.FK_Employee_Tests_Test_Order_Details">
+            <End Role="Test_Order_Details" EntitySet="Test_Order_Details" />
+            <End Role="Employee_Tests" EntitySet="Employee_Tests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Credentials" Association="Self.FK_Employees_Credentials">
+            <End Role="Credentials" EntitySet="Credentials" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Titles" Association="Self.FK_Employees_Titles">
+            <End Role="Titles" EntitySet="Titles" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Payments_Invoices" Association="Self.FK_Invoice_Payments_Invoices">
+            <End Role="Invoices" EntitySet="Invoices" />
+            <End Role="Invoice_Payments" EntitySet="Invoice_Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Payments_Payments" Association="Self.FK_Invoice_Payments_Payments">
+            <End Role="Payments" EntitySet="Payments" />
+            <End Role="Invoice_Payments" EntitySet="Invoice_Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoices_Base_Prices" Association="Self.FK_Invoices_Base_Prices">
+            <End Role="Base_Prices" EntitySet="Base_Prices" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoices_Employee_Tests" Association="Self.FK_Invoices_Employee_Tests">
+            <End Role="Employee_Tests" EntitySet="Employee_Tests" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoices_Orders" Association="Self.FK_Invoices_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoices_Test_Materials" Association="Self.FK_Invoices_Test_Materials">
+            <End Role="Test_Materials" EntitySet="Test_Materials" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Details_Assays" Association="Self.FK_Order_Details_Assays">
+            <End Role="Assays" EntitySet="Assays" />
+            <End Role="Order_Details" EntitySet="Order_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Details_Orders" Association="Self.FK_Order_Details_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Order_Details" EntitySet="Order_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Details_Sequences" Association="Self.FK_Order_Details_Sequences">
+            <End Role="Sequences" EntitySet="Sequences" />
+            <End Role="Order_Details" EntitySet="Order_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Details_Status" Association="Self.FK_Order_Details_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Order_Details" EntitySet="Order_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Accounts" Association="Self.FK_Orders_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Status" Association="Self.FK_Orders_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prereq_Test_Tests" Association="Self.FK_Prereq_Test_Tests">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="Prereq_Test" EntitySet="Prereq_Test" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prereq_Test_Tests1" Association="Self.FK_Prereq_Test_Tests1">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="Prereq_Test" EntitySet="Prereq_Test" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sequences_Compounds" Association="Self.FK_Sequences_Compounds">
+            <End Role="Compounds" EntitySet="Compounds" />
+            <End Role="Sequences" EntitySet="Sequences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Materials_Materials" Association="Self.FK_Test_Materials_Materials">
+            <End Role="Materials" EntitySet="Materials" />
+            <End Role="Test_Materials" EntitySet="Test_Materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Materials_Tests" Association="Self.FK_Test_Materials_Tests">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="Test_Materials" EntitySet="Test_Materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Order_Details_Order_Details" Association="Self.FK_Test_Order_Details_Order_Details">
+            <End Role="Order_Details" EntitySet="Order_Details" />
+            <End Role="Test_Order_Details" EntitySet="Test_Order_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Order_Details_Solvents" Association="Self.FK_Test_Order_Details_Solvents">
+            <End Role="Solvents" EntitySet="Solvents" />
+            <End Role="Test_Order_Details" EntitySet="Test_Order_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Order_Details_Status" Association="Self.FK_Test_Order_Details_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Test_Order_Details" EntitySet="Test_Order_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Order_Details_Tests" Association="Self.FK_Test_Order_Details_Tests">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="Test_Order_Details" EntitySet="Test_Order_Details" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NWlabsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="StateOrProvince" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Balance" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Contacts" Relationship="Self.FK_Contacts_Accounts" FromRole="Accounts" ToRole="Contacts" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Accounts" FromRole="Accounts" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Assay">
+          <Key>
+            <PropertyRef Name="AssayID" />
+          </Key>
+          <Property Name="AssayID" Type="Int32" Nullable="false" />
+          <Property Name="AssayName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AssayDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AssayProtocol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Order_Details" Relationship="Self.FK_Order_Details_Assays" FromRole="Assays" ToRole="Order_Details" />
+          <NavigationProperty Name="Tests" Relationship="Self.Assay_Tests" FromRole="Assays" ToRole="Tests" />
+        </EntityType>
+        <EntityType Name="Base_Prices">
+          <Key>
+            <PropertyRef Name="BasePriceID" />
+          </Key>
+          <Property Name="BasePriceID" Type="Int32" Nullable="false" />
+          <Property Name="BasePrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Invoices" Relationship="Self.FK_Invoices_Base_Prices" FromRole="Base_Prices" ToRole="Invoices" />
+        </EntityType>
+        <EntityType Name="Compound">
+          <Key>
+            <PropertyRef Name="LTNumber" />
+          </Key>
+          <Property Name="LTNumber" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quant_Mg" Type="Decimal" Precision="10" Scale="5" Nullable="false" />
+          <Property Name="ArrivalDate" Type="DateTime" Precision="0" />
+          <Property Name="RecievedByEmpID" Type="Int32" />
+          <Property Name="DueDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="MTD" Type="Decimal" Precision="10" Scale="5" Nullable="false" />
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="Sequences" Relationship="Self.FK_Sequences_Compounds" FromRole="Compounds" ToRole="Sequences" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactID" />
+          </Key>
+          <Property Name="ContactID" Type="Int32" Nullable="false" />
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="ContactFirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContactLastName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContactPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContactEmail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CredID" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="Self.FK_Contacts_Accounts" FromRole="Contacts" ToRole="Accounts" />
+          <NavigationProperty Name="Credential" Relationship="Self.FK_Contacts_Credentials" FromRole="Contacts" ToRole="Credentials" />
+        </EntityType>
+        <EntityType Name="Credential">
+          <Key>
+            <PropertyRef Name="CredID" />
+          </Key>
+          <Property Name="CredID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Contacts" Relationship="Self.FK_Contacts_Credentials" FromRole="Credentials" ToRole="Contacts" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Credentials_Roles" FromRole="Credentials" ToRole="Roles" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_Credentials" FromRole="Credentials" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Employee_Tests">
+          <Key>
+            <PropertyRef Name="EmployeeTestID" />
+          </Key>
+          <Property Name="EmployeeTestID" Type="Int32" Nullable="false" />
+          <Property Name="EmpID" Type="Int32" />
+          <Property Name="TODID" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Tests_Employees" FromRole="Employee_Tests" ToRole="Employees" />
+          <NavigationProperty Name="Test_Order_Details" Relationship="Self.FK_Employee_Tests_Test_Order_Details" FromRole="Employee_Tests" ToRole="Test_Order_Details" />
+          <NavigationProperty Name="Invoices" Relationship="Self.FK_Invoices_Employee_Tests" FromRole="Employee_Tests" ToRole="Invoices" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="EmpID" Type="Int32" Nullable="false" />
+          <Property Name="EmpFirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmpLastName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TitleID" Type="Int32" />
+          <Property Name="EmpEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CredID" Type="Int32" />
+          <NavigationProperty Name="Credential" Relationship="Self.FK_Employees_Credentials" FromRole="Employees" ToRole="Credentials" />
+          <NavigationProperty Name="Employee_Tests" Relationship="Self.FK_Employee_Tests_Employees" FromRole="Employees" ToRole="Employee_Tests" />
+          <NavigationProperty Name="Title" Relationship="Self.FK_Employees_Titles" FromRole="Employees" ToRole="Titles" />
+        </EntityType>
+        <EntityType Name="Invoice_Payments">
+          <Key>
+            <PropertyRef Name="InvoicePaymentID" />
+          </Key>
+          <Property Name="InvoicePaymentID" Type="Int32" Nullable="false" />
+          <Property Name="InvoiceID" Type="Int32" />
+          <Property Name="PaymentID" Type="Int32" />
+          <Property Name="AmountApplied" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Invoice" Relationship="Self.FK_Invoice_Payments_Invoices" FromRole="Invoice_Payments" ToRole="Invoices" />
+          <NavigationProperty Name="Payment" Relationship="Self.FK_Invoice_Payments_Payments" FromRole="Invoice_Payments" ToRole="Payments" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceID" />
+          </Key>
+          <Property Name="InvoiceID" Type="Int32" Nullable="false" />
+          <Property Name="TestMaterialID" Type="Int32" />
+          <Property Name="EmployeeTestID" Type="Int32" />
+          <Property Name="BasePriceID" Type="Int32" />
+          <Property Name="InvoiceTotal" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PaymentDueDate" Type="DateTime" Precision="0" />
+          <Property Name="EarlyPaymentDueDate" Type="DateTime" Precision="0" />
+          <Property Name="DiscountRate" Type="Decimal" Precision="5" Scale="4" />
+          <Property Name="OrderID" Type="Int32" />
+          <NavigationProperty Name="Base_Prices" Relationship="Self.FK_Invoices_Base_Prices" FromRole="Invoices" ToRole="Base_Prices" />
+          <NavigationProperty Name="Employee_Tests" Relationship="Self.FK_Invoices_Employee_Tests" FromRole="Invoices" ToRole="Employee_Tests" />
+          <NavigationProperty Name="Invoice_Payments" Relationship="Self.FK_Invoice_Payments_Invoices" FromRole="Invoices" ToRole="Invoice_Payments" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Invoices_Orders" FromRole="Invoices" ToRole="Orders" />
+          <NavigationProperty Name="Test_Materials" Relationship="Self.FK_Invoices_Test_Materials" FromRole="Invoices" ToRole="Test_Materials" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="MaterialID" />
+          </Key>
+          <Property Name="MaterialID" Type="Int32" Nullable="false" />
+          <Property Name="MaterialCost" Type="Decimal" Precision="6" Scale="2" />
+          <NavigationProperty Name="Test_Materials" Relationship="Self.FK_Test_Materials_Materials" FromRole="Materials" ToRole="Test_Materials" />
+        </EntityType>
+        <EntityType Name="Order_Details">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="Int32" Nullable="false" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="AssayID" Type="Int32" />
+          <Property Name="SeqID" Type="Int32" />
+          <Property Name="OrderDetailStatus" Type="Int32" />
+          <Property Name="Authorized" Type="Boolean" />
+          <Property Name="DataReport" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Assay" Relationship="Self.FK_Order_Details_Assays" FromRole="Order_Details" ToRole="Assays" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Details_Orders" FromRole="Order_Details" ToRole="Orders" />
+          <NavigationProperty Name="Sequence" Relationship="Self.FK_Order_Details_Sequences" FromRole="Order_Details" ToRole="Sequences" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Order_Details_Status" FromRole="Order_Details" ToRole="Status" />
+          <NavigationProperty Name="Test_Order_Details" Relationship="Self.FK_Test_Order_Details_Order_Details" FromRole="Order_Details" ToRole="Test_Order_Details" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="AccountID" Type="Int32" />
+          <Property Name="BasePriceID" Type="Int32" />
+          <Property Name="OrderStatusID" Type="Int32" />
+          <Property Name="RushOrder" Type="Boolean" />
+          <Property Name="SummaryReport" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Account" Relationship="Self.FK_Orders_Accounts" FromRole="Orders" ToRole="Accounts" />
+          <NavigationProperty Name="Invoices" Relationship="Self.FK_Invoices_Orders" FromRole="Orders" ToRole="Invoices" />
+          <NavigationProperty Name="Order_Details" Relationship="Self.FK_Order_Details_Orders" FromRole="Orders" ToRole="Order_Details" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Orders_Status" FromRole="Orders" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="Int32" Nullable="false" />
+          <Property Name="PaymentAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="0" />
+          <Property Name="AccountID" Type="Int32" />
+          <NavigationProperty Name="Invoice_Payments" Relationship="Self.FK_Invoice_Payments_Payments" FromRole="Payments" ToRole="Invoice_Payments" />
+        </EntityType>
+        <EntityType Name="Prereq_Test">
+          <Key>
+            <PropertyRef Name="PrereqTestID" />
+          </Key>
+          <Property Name="PrereqTestID" Type="Int32" Nullable="false" />
+          <Property Name="TestID" Type="Int32" Nullable="false" />
+          <Property Name="ConditionaltestID" Type="Int32" />
+          <NavigationProperty Name="Test" Relationship="Self.FK_Prereq_Test_Tests" FromRole="Prereq_Test" ToRole="Tests" />
+          <NavigationProperty Name="Test1" Relationship="Self.FK_Prereq_Test_Tests1" FromRole="Prereq_Test" ToRole="Tests" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="RoleDesc" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Credentials" Relationship="Self.FK_Credentials_Roles" FromRole="Roles" ToRole="Credentials" />
+        </EntityType>
+        <EntityType Name="Sequence">
+          <Key>
+            <PropertyRef Name="SeqID" />
+          </Key>
+          <Property Name="SeqID" Type="Int32" Nullable="false" />
+          <Property Name="LTNumber" Type="Int32" Nullable="false" />
+          <Property Name="SeqCode" Type="Int32" Nullable="false" />
+          <Property Name="SampleAppearance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DocumentedWeight" Type="Decimal" Precision="10" Scale="5" Nullable="false" />
+          <Property Name="MolecularMass" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="ActualWeight" Type="Decimal" Precision="10" Scale="5" Nullable="false" />
+          <NavigationProperty Name="Compound" Relationship="Self.FK_Sequences_Compounds" FromRole="Sequences" ToRole="Compounds" />
+          <NavigationProperty Name="Order_Details" Relationship="Self.FK_Order_Details_Sequences" FromRole="Sequences" ToRole="Order_Details" />
+        </EntityType>
+        <EntityType Name="Solvent">
+          <Key>
+            <PropertyRef Name="SeqID" />
+            <PropertyRef Name="TestTubeNo" />
+          </Key>
+          <Property Name="SeqID" Type="Int32" Nullable="false" />
+          <Property Name="TestTubeNo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Test_Order_Details" Relationship="Self.FK_Test_Order_Details_Solvents" FromRole="Solvents" ToRole="Test_Order_Details" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="StatusDesc" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Order_Details" Relationship="Self.FK_Order_Details_Status" FromRole="Status" ToRole="Order_Details" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Status" FromRole="Status" ToRole="Orders" />
+          <NavigationProperty Name="Test_Order_Details" Relationship="Self.FK_Test_Order_Details_Status" FromRole="Status" ToRole="Test_Order_Details" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Test_Materials">
+          <Key>
+            <PropertyRef Name="TestMaterialID" />
+          </Key>
+          <Property Name="TestMaterialID" Type="Int32" Nullable="false" />
+          <Property Name="TestID" Type="Int32" />
+          <Property Name="MaterialID" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <NavigationProperty Name="Invoices" Relationship="Self.FK_Invoices_Test_Materials" FromRole="Test_Materials" ToRole="Invoices" />
+          <NavigationProperty Name="Material" Relationship="Self.FK_Test_Materials_Materials" FromRole="Test_Materials" ToRole="Materials" />
+          <NavigationProperty Name="Test" Relationship="Self.FK_Test_Materials_Tests" FromRole="Test_Materials" ToRole="Tests" />
+        </EntityType>
+        <EntityType Name="Test_Order_Details">
+          <Key>
+            <PropertyRef Name="TODID" />
+          </Key>
+          <Property Name="TODID" Type="Int32" Nullable="false" />
+          <Property Name="OrderDetailID" Type="Int32" />
+          <Property Name="TestID" Type="Int32" />
+          <Property Name="SeqID" Type="Int32" />
+          <Property Name="TestTubeNo" Type="Int32" />
+          <Property Name="TestStatusID" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="RawResults" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employee_Tests" Relationship="Self.FK_Employee_Tests_Test_Order_Details" FromRole="Test_Order_Details" ToRole="Employee_Tests" />
+          <NavigationProperty Name="Order_Details" Relationship="Self.FK_Test_Order_Details_Order_Details" FromRole="Test_Order_Details" ToRole="Order_Details" />
+          <NavigationProperty Name="Solvent" Relationship="Self.FK_Test_Order_Details_Solvents" FromRole="Test_Order_Details" ToRole="Solvents" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Test_Order_Details_Status" FromRole="Test_Order_Details" ToRole="Status" />
+          <NavigationProperty Name="Test" Relationship="Self.FK_Test_Order_Details_Tests" FromRole="Test_Order_Details" ToRole="Tests" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="TestID" />
+          </Key>
+          <Property Name="TestID" Type="Int32" Nullable="false" />
+          <Property Name="TestName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AvgTime" Type="Decimal" Precision="6" Scale="2" />
+          <NavigationProperty Name="Prereq_Test" Relationship="Self.FK_Prereq_Test_Tests" FromRole="Tests" ToRole="Prereq_Test" />
+          <NavigationProperty Name="Prereq_Test1" Relationship="Self.FK_Prereq_Test_Tests1" FromRole="Tests" ToRole="Prereq_Test" />
+          <NavigationProperty Name="Test_Materials" Relationship="Self.FK_Test_Materials_Tests" FromRole="Tests" ToRole="Test_Materials" />
+          <NavigationProperty Name="Test_Order_Details" Relationship="Self.FK_Test_Order_Details_Tests" FromRole="Tests" ToRole="Test_Order_Details" />
+          <NavigationProperty Name="Assays" Relationship="Self.Assay_Tests" FromRole="Tests" ToRole="Assays" />
+        </EntityType>
+        <EntityType Name="Title">
+          <Key>
+            <PropertyRef Name="TitleID" />
+          </Key>
+          <Property Name="TitleID" Type="Int32" Nullable="false" />
+          <Property Name="Title1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Wage" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_Titles" FromRole="Titles" ToRole="Employees" />
+        </EntityType>
+        <Association Name="FK_Contacts_Accounts">
+          <End Role="Accounts" Type="Self.Account" Multiplicity="1" />
+          <End Role="Contacts" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Accounts">
+          <End Role="Accounts" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Details_Assays">
+          <End Role="Assays" Type="Self.Assay" Multiplicity="0..1" />
+          <End Role="Order_Details" Type="Self.Order_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assays">
+              <PropertyRef Name="AssayID" />
+            </Principal>
+            <Dependent Role="Order_Details">
+              <PropertyRef Name="AssayID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoices_Base_Prices">
+          <End Role="Base_Prices" Type="Self.Base_Prices" Multiplicity="0..1" />
+          <End Role="Invoices" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Base_Prices">
+              <PropertyRef Name="BasePriceID" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="BasePriceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sequences_Compounds">
+          <End Role="Compounds" Type="Self.Compound" Multiplicity="1" />
+          <End Role="Sequences" Type="Self.Sequence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compounds">
+              <PropertyRef Name="LTNumber" />
+            </Principal>
+            <Dependent Role="Sequences">
+              <PropertyRef Name="LTNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacts_Credentials">
+          <End Role="Credentials" Type="Self.Credential" Multiplicity="0..1" />
+          <End Role="Contacts" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Credentials">
+              <PropertyRef Name="CredID" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="CredID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Credentials_Roles">
+          <End Role="Roles" Type="Self.Role" Multiplicity="1" />
+          <End Role="Credentials" Type="Self.Credential" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="Credentials">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Credentials">
+          <End Role="Credentials" Type="Self.Credential" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Credentials">
+              <PropertyRef Name="CredID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="CredID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Tests_Employees">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Employee_Tests" Type="Self.Employee_Tests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="Employee_Tests">
+              <PropertyRef Name="EmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Tests_Test_Order_Details">
+          <End Role="Test_Order_Details" Type="Self.Test_Order_Details" Multiplicity="0..1" />
+          <End Role="Employee_Tests" Type="Self.Employee_Tests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test_Order_Details">
+              <PropertyRef Name="TODID" />
+            </Principal>
+            <Dependent Role="Employee_Tests">
+              <PropertyRef Name="TODID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoices_Employee_Tests">
+          <End Role="Employee_Tests" Type="Self.Employee_Tests" Multiplicity="0..1" />
+          <End Role="Invoices" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee_Tests">
+              <PropertyRef Name="EmployeeTestID" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="EmployeeTestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Titles">
+          <End Role="Titles" Type="Self.Title" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Titles">
+              <PropertyRef Name="TitleID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="TitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Payments_Invoices">
+          <End Role="Invoices" Type="Self.Invoice" Multiplicity="0..1" />
+          <End Role="Invoice_Payments" Type="Self.Invoice_Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoices">
+              <PropertyRef Name="InvoiceID" />
+            </Principal>
+            <Dependent Role="Invoice_Payments">
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Payments_Payments">
+          <End Role="Payments" Type="Self.Payment" Multiplicity="0..1" />
+          <End Role="Invoice_Payments" Type="Self.Invoice_Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payments">
+              <PropertyRef Name="PaymentID" />
+            </Principal>
+            <Dependent Role="Invoice_Payments">
+              <PropertyRef Name="PaymentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoices_Orders">
+          <End Role="Orders" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="Invoices" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoices_Test_Materials">
+          <End Role="Test_Materials" Type="Self.Test_Materials" Multiplicity="0..1" />
+          <End Role="Invoices" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test_Materials">
+              <PropertyRef Name="TestMaterialID" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="TestMaterialID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Materials_Materials">
+          <End Role="Materials" Type="Self.Material" Multiplicity="0..1" />
+          <End Role="Test_Materials" Type="Self.Test_Materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materials">
+              <PropertyRef Name="MaterialID" />
+            </Principal>
+            <Dependent Role="Test_Materials">
+              <PropertyRef Name="MaterialID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Details_Orders">
+          <End Role="Orders" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="Order_Details" Type="Self.Order_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Order_Details">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Details_Sequences">
+          <End Role="Sequences" Type="Self.Sequence" Multiplicity="0..1" />
+          <End Role="Order_Details" Type="Self.Order_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sequences">
+              <PropertyRef Name="SeqID" />
+            </Principal>
+            <Dependent Role="Order_Details">
+              <PropertyRef Name="SeqID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Details_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Order_Details" Type="Self.Order_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Order_Details">
+              <PropertyRef Name="OrderDetailStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Order_Details_Order_Details">
+          <End Role="Order_Details" Type="Self.Order_Details" Multiplicity="0..1" />
+          <End Role="Test_Order_Details" Type="Self.Test_Order_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_Details">
+              <PropertyRef Name="OrderDetailID" />
+            </Principal>
+            <Dependent Role="Test_Order_Details">
+              <PropertyRef Name="OrderDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="OrderStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prereq_Test_Tests">
+          <End Role="Tests" Type="Self.Test" Multiplicity="1" />
+          <End Role="Prereq_Test" Type="Self.Prereq_Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="TestID" />
+            </Principal>
+            <Dependent Role="Prereq_Test">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prereq_Test_Tests1">
+          <End Role="Tests" Type="Self.Test" Multiplicity="0..1" />
+          <End Role="Prereq_Test" Type="Self.Prereq_Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="TestID" />
+            </Principal>
+            <Dependent Role="Prereq_Test">
+              <PropertyRef Name="ConditionaltestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Order_Details_Solvents">
+          <End Role="Solvents" Type="Self.Solvent" Multiplicity="0..1" />
+          <End Role="Test_Order_Details" Type="Self.Test_Order_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Solvents">
+              <PropertyRef Name="SeqID" />
+              <PropertyRef Name="TestTubeNo" />
+            </Principal>
+            <Dependent Role="Test_Order_Details">
+              <PropertyRef Name="SeqID" />
+              <PropertyRef Name="TestTubeNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Order_Details_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Test_Order_Details" Type="Self.Test_Order_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Test_Order_Details">
+              <PropertyRef Name="TestStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Materials_Tests">
+          <End Role="Tests" Type="Self.Test" Multiplicity="0..1" />
+          <End Role="Test_Materials" Type="Self.Test_Materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="TestID" />
+            </Principal>
+            <Dependent Role="Test_Materials">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Order_Details_Tests">
+          <End Role="Tests" Type="Self.Test" Multiplicity="0..1" />
+          <End Role="Test_Order_Details" Type="Self.Test_Order_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="TestID" />
+            </Principal>
+            <Dependent Role="Test_Order_Details">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Assay_Tests">
+          <End Role="Assays" Type="Self.Assay" Multiplicity="*" />
+          <End Role="Tests" Type="Self.Test" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="NWlabsContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Assays" EntityType="Self.Assay" />
+          <EntitySet Name="Base_Prices" EntityType="Self.Base_Prices" />
+          <EntitySet Name="Compounds" EntityType="Self.Compound" />
+          <EntitySet Name="Contacts" EntityType="Self.Contact" />
+          <EntitySet Name="Credentials" EntityType="Self.Credential" />
+          <EntitySet Name="Employee_Tests" EntityType="Self.Employee_Tests" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Invoice_Payments" EntityType="Self.Invoice_Payments" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+          <EntitySet Name="Materials" EntityType="Self.Material" />
+          <EntitySet Name="Order_Details" EntityType="Self.Order_Details" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="Prereq_Test" EntityType="Self.Prereq_Test" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Sequences" EntityType="Self.Sequence" />
+          <EntitySet Name="Solvents" EntityType="Self.Solvent" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Test_Materials" EntityType="Self.Test_Materials" />
+          <EntitySet Name="Test_Order_Details" EntityType="Self.Test_Order_Details" />
+          <EntitySet Name="Tests" EntityType="Self.Test" />
+          <EntitySet Name="Titles" EntityType="Self.Title" />
+          <AssociationSet Name="FK_Contacts_Accounts" Association="Self.FK_Contacts_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Accounts" Association="Self.FK_Orders_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Details_Assays" Association="Self.FK_Order_Details_Assays">
+            <End Role="Assays" EntitySet="Assays" />
+            <End Role="Order_Details" EntitySet="Order_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoices_Base_Prices" Association="Self.FK_Invoices_Base_Prices">
+            <End Role="Base_Prices" EntitySet="Base_Prices" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sequences_Compounds" Association="Self.FK_Sequences_Compounds">
+            <End Role="Compounds" EntitySet="Compounds" />
+            <End Role="Sequences" EntitySet="Sequences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacts_Credentials" Association="Self.FK_Contacts_Credentials">
+            <End Role="Credentials" EntitySet="Credentials" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Credentials_Roles" Association="Self.FK_Credentials_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Credentials" EntitySet="Credentials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Credentials" Association="Self.FK_Employees_Credentials">
+            <End Role="Credentials" EntitySet="Credentials" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Tests_Employees" Association="Self.FK_Employee_Tests_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Employee_Tests" EntitySet="Employee_Tests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Tests_Test_Order_Details" Association="Self.FK_Employee_Tests_Test_Order_Details">
+            <End Role="Test_Order_Details" EntitySet="Test_Order_Details" />
+            <End Role="Employee_Tests" EntitySet="Employee_Tests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoices_Employee_Tests" Association="Self.FK_Invoices_Employee_Tests">
+            <End Role="Employee_Tests" EntitySet="Employee_Tests" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Titles" Association="Self.FK_Employees_Titles">
+            <End Role="Titles" EntitySet="Titles" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Payments_Invoices" Association="Self.FK_Invoice_Payments_Invoices">
+            <End Role="Invoices" EntitySet="Invoices" />
+            <End Role="Invoice_Payments" EntitySet="Invoice_Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Payments_Payments" Association="Self.FK_Invoice_Payments_Payments">
+            <End Role="Payments" EntitySet="Payments" />
+            <End Role="Invoice_Payments" EntitySet="Invoice_Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoices_Orders" Association="Self.FK_Invoices_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoices_Test_Materials" Association="Self.FK_Invoices_Test_Materials">
+            <End Role="Test_Materials" EntitySet="Test_Materials" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Materials_Materials" Association="Self.FK_Test_Materials_Materials">
+            <End Role="Materials" EntitySet="Materials" />
+            <End Role="Test_Materials" EntitySet="Test_Materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Details_Orders" Association="Self.FK_Order_Details_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Order_Details" EntitySet="Order_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Details_Sequences" Association="Self.FK_Order_Details_Sequences">
+            <End Role="Sequences" EntitySet="Sequences" />
+            <End Role="Order_Details" EntitySet="Order_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Details_Status" Association="Self.FK_Order_Details_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Order_Details" EntitySet="Order_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Order_Details_Order_Details" Association="Self.FK_Test_Order_Details_Order_Details">
+            <End Role="Order_Details" EntitySet="Order_Details" />
+            <End Role="Test_Order_Details" EntitySet="Test_Order_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Status" Association="Self.FK_Orders_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prereq_Test_Tests" Association="Self.FK_Prereq_Test_Tests">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="Prereq_Test" EntitySet="Prereq_Test" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prereq_Test_Tests1" Association="Self.FK_Prereq_Test_Tests1">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="Prereq_Test" EntitySet="Prereq_Test" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Order_Details_Solvents" Association="Self.FK_Test_Order_Details_Solvents">
+            <End Role="Solvents" EntitySet="Solvents" />
+            <End Role="Test_Order_Details" EntitySet="Test_Order_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Order_Details_Status" Association="Self.FK_Test_Order_Details_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Test_Order_Details" EntitySet="Test_Order_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Materials_Tests" Association="Self.FK_Test_Materials_Tests">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="Test_Materials" EntitySet="Test_Materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Order_Details_Tests" Association="Self.FK_Test_Order_Details_Tests">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="Test_Order_Details" EntitySet="Test_Order_Details" />
+          </AssociationSet>
+          <AssociationSet Name="Assay_Tests" Association="Self.Assay_Tests">
+            <End Role="Assays" EntitySet="Assays" />
+            <End Role="Tests" EntitySet="Tests" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NWlabsModelStoreContainer" CdmEntityContainer="NWlabsContext">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="NWlabsModel.Account">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="StateOrProvince" ColumnName="StateOrProvince" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Assays">
+            <EntityTypeMapping TypeName="NWlabsModel.Assay">
+              <MappingFragment StoreEntitySet="Assays">
+                <ScalarProperty Name="AssayID" ColumnName="AssayID" />
+                <ScalarProperty Name="AssayName" ColumnName="AssayName" />
+                <ScalarProperty Name="AssayDesc" ColumnName="AssayDesc" />
+                <ScalarProperty Name="AssayProtocol" ColumnName="AssayProtocol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Base_Prices">
+            <EntityTypeMapping TypeName="NWlabsModel.Base_Prices">
+              <MappingFragment StoreEntitySet="Base_Prices">
+                <ScalarProperty Name="BasePriceID" ColumnName="BasePriceID" />
+                <ScalarProperty Name="BasePrice" ColumnName="BasePrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Compounds">
+            <EntityTypeMapping TypeName="NWlabsModel.Compound">
+              <MappingFragment StoreEntitySet="Compounds">
+                <ScalarProperty Name="LTNumber" ColumnName="LTNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Quant_Mg" ColumnName="Quant_Mg" />
+                <ScalarProperty Name="ArrivalDate" ColumnName="ArrivalDate" />
+                <ScalarProperty Name="RecievedByEmpID" ColumnName="RecievedByEmpID" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="MTD" ColumnName="MTD" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="NWlabsModel.Contact">
+              <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+                <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="CredID" ColumnName="CredID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Credentials">
+            <EntityTypeMapping TypeName="NWlabsModel.Credential">
+              <MappingFragment StoreEntitySet="Credentials">
+                <ScalarProperty Name="CredID" ColumnName="CredID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee_Tests">
+            <EntityTypeMapping TypeName="NWlabsModel.Employee_Tests">
+              <MappingFragment StoreEntitySet="Employee_Tests">
+                <ScalarProperty Name="EmployeeTestID" ColumnName="EmployeeTestID" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="TODID" ColumnName="TODID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="NWlabsModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="EmpFirstName" ColumnName="EmpFirstName" />
+                <ScalarProperty Name="EmpLastName" ColumnName="EmpLastName" />
+                <ScalarProperty Name="TitleID" ColumnName="TitleID" />
+                <ScalarProperty Name="EmpEmail" ColumnName="EmpEmail" />
+                <ScalarProperty Name="EmpPhone" ColumnName="EmpPhone" />
+                <ScalarProperty Name="CredID" ColumnName="CredID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoice_Payments">
+            <EntityTypeMapping TypeName="NWlabsModel.Invoice_Payments">
+              <MappingFragment StoreEntitySet="Invoice_Payments">
+                <ScalarProperty Name="InvoicePaymentID" ColumnName="InvoicePaymentID" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="AmountApplied" ColumnName="AmountApplied" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="NWlabsModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoices">
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="TestMaterialID" ColumnName="TestMaterialID" />
+                <ScalarProperty Name="EmployeeTestID" ColumnName="EmployeeTestID" />
+                <ScalarProperty Name="BasePriceID" ColumnName="BasePriceID" />
+                <ScalarProperty Name="InvoiceTotal" ColumnName="InvoiceTotal" />
+                <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+                <ScalarProperty Name="EarlyPaymentDueDate" ColumnName="EarlyPaymentDueDate" />
+                <ScalarProperty Name="DiscountRate" ColumnName="DiscountRate" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materials">
+            <EntityTypeMapping TypeName="NWlabsModel.Material">
+              <MappingFragment StoreEntitySet="Materials">
+                <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+                <ScalarProperty Name="MaterialCost" ColumnName="MaterialCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_Details">
+            <EntityTypeMapping TypeName="NWlabsModel.Order_Details">
+              <MappingFragment StoreEntitySet="Order_Details">
+                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="AssayID" ColumnName="AssayID" />
+                <ScalarProperty Name="SeqID" ColumnName="SeqID" />
+                <ScalarProperty Name="OrderDetailStatus" ColumnName="OrderDetailStatus" />
+                <ScalarProperty Name="Authorized" ColumnName="Authorized" />
+                <ScalarProperty Name="DataReport" ColumnName="DataReport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="NWlabsModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="BasePriceID" ColumnName="BasePriceID" />
+                <ScalarProperty Name="OrderStatusID" ColumnName="OrderStatusID" />
+                <ScalarProperty Name="RushOrder" ColumnName="RushOrder" />
+                <ScalarProperty Name="SummaryReport" ColumnName="SummaryReport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="NWlabsModel.Payment">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prereq_Test">
+            <EntityTypeMapping TypeName="NWlabsModel.Prereq_Test">
+              <MappingFragment StoreEntitySet="Prereq_Test">
+                <ScalarProperty Name="PrereqTestID" ColumnName="PrereqTestID" />
+                <ScalarProperty Name="TestID" ColumnName="TestID" />
+                <ScalarProperty Name="ConditionaltestID" ColumnName="ConditionaltestID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="NWlabsModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleDesc" ColumnName="RoleDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sequences">
+            <EntityTypeMapping TypeName="NWlabsModel.Sequence">
+              <MappingFragment StoreEntitySet="Sequences">
+                <ScalarProperty Name="SeqID" ColumnName="SeqID" />
+                <ScalarProperty Name="LTNumber" ColumnName="LTNumber" />
+                <ScalarProperty Name="SeqCode" ColumnName="SeqCode" />
+                <ScalarProperty Name="SampleAppearance" ColumnName="SampleAppearance" />
+                <ScalarProperty Name="DocumentedWeight" ColumnName="DocumentedWeight" />
+                <ScalarProperty Name="MolecularMass" ColumnName="MolecularMass" />
+                <ScalarProperty Name="ActualWeight" ColumnName="ActualWeight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Solvents">
+            <EntityTypeMapping TypeName="NWlabsModel.Solvent">
+              <MappingFragment StoreEntitySet="Solvents">
+                <ScalarProperty Name="SeqID" ColumnName="SeqID" />
+                <ScalarProperty Name="TestTubeNo" ColumnName="TestTubeNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="NWlabsModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="StatusDesc" ColumnName="StatusDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NWlabsModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Test_Materials">
+            <EntityTypeMapping TypeName="NWlabsModel.Test_Materials">
+              <MappingFragment StoreEntitySet="Test_Materials">
+                <ScalarProperty Name="TestMaterialID" ColumnName="TestMaterialID" />
+                <ScalarProperty Name="TestID" ColumnName="TestID" />
+                <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Test_Order_Details">
+            <EntityTypeMapping TypeName="NWlabsModel.Test_Order_Details">
+              <MappingFragment StoreEntitySet="Test_Order_Details">
+                <ScalarProperty Name="TODID" ColumnName="TODID" />
+                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+                <ScalarProperty Name="TestID" ColumnName="TestID" />
+                <ScalarProperty Name="SeqID" ColumnName="SeqID" />
+                <ScalarProperty Name="TestTubeNo" ColumnName="TestTubeNo" />
+                <ScalarProperty Name="TestStatusID" ColumnName="TestStatusID" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="RawResults" ColumnName="RawResults" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tests">
+            <EntityTypeMapping TypeName="NWlabsModel.Test">
+              <MappingFragment StoreEntitySet="Tests">
+                <ScalarProperty Name="TestID" ColumnName="TestID" />
+                <ScalarProperty Name="TestName" ColumnName="TestName" />
+                <ScalarProperty Name="AvgTime" ColumnName="AvgTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Titles">
+            <EntityTypeMapping TypeName="NWlabsModel.Title">
+              <MappingFragment StoreEntitySet="Titles">
+                <ScalarProperty Name="TitleID" ColumnName="TitleID" />
+                <ScalarProperty Name="Title1" ColumnName="Title" />
+                <ScalarProperty Name="Wage" ColumnName="Wage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Assay_Tests" TypeName="NWlabsModel.Assay_Tests" StoreEntitySet="Assay_Tests">
+            <EndProperty Name="Assays">
+              <ScalarProperty Name="AssayID" ColumnName="AssayId" />
+            </EndProperty>
+            <EndProperty Name="Tests">
+              <ScalarProperty Name="TestID" ColumnName="TestID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
