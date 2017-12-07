@@ -155,6 +155,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SeattleController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -194,6 +195,7 @@
     <Compile Include="Models\Material.cs">
       <DependentUpon>NWLDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\myAccount.cs" />
     <Compile Include="Models\NWLDatabase.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -253,6 +255,9 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Dimages\NorthWestLogo.png" />
+    <Content Include="Content\Dimages\Pentelute-Lab-MIT-Landing-PageDSC03555.jpg" />
+    <Content Include="Content\Dimages\used-lab-equipment.jpg" />
     <Content Include="Content\customerservice.jpg" />
     <Content Include="Content\labbackground.jpg" />
     <Content Include="Content\rachelStyles.css" />
@@ -314,12 +319,14 @@
     <Content Include="Views\Accounts\Edit.cshtml" />
     <Content Include="Views\Accounts\Index.cshtml" />
     <Content Include="Views\Home\Catalog.cshtml" />
+    <Content Include="Views\Accounts\myAccount.cshtml" />
     <Content Include="Views\Seattle\OrderForm.cshtml" />
     <Content Include="Views\Seattle\SummaryReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Helper\" />
+    <Folder Include="Views\Orders\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

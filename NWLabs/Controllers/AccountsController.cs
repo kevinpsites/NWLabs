@@ -123,5 +123,11 @@ namespace NWLabs.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult myAccount()
+        {
+           
+            return View();
+        }
     }
 }
