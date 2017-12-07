@@ -11,5 +11,6 @@ namespace NWLabs.Models
         public Contact contact { get; set; }
         public Credential credential { get; set; }
         public Role role { get; set; }
+        public Employee employee { get; set; }
     }
 }

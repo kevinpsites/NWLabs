@@ -17,12 +17,16 @@ namespace NWLabs.Controllers
         public static string GetName()
         {
             string name;
-            if (Customer != null)
+            if (Customer.contact != null)
             {
                 name = Customer.contact.ContactFirstName + " " + Customer.contact.ContactLastName;
                 return name;
             }
-            else
+            else if (Customer.employee != null)
+            {
+                name = Customer.employee.EmpFirstName + " " + Customer.employee.EmpLastName;
+                return name;
+            }
             {
                 name = null;
                 return name;
@@ -60,5 +64,24 @@ namespace NWLabs.Controllers
             return OrderAssayList;
         }
 
+        public static List<Assay> RemoveOrderAssayList(Assay assay)
+        {
+            IEnumerable<Assay> eAssy;
+            List<Assay> AssayList = new List<Assay>();
+            AssayList.Add(assay);
+
+            int index = OrderAssayList.IndexOf(assay);
+
+            AssayList.Add(assay);
+
+            OrderAssayList.Remove(assay);
+
+            AssayList.Add(assay);
+
+            OrderAssayList.Remove(assay);
+            
+
+            return OrderAssayList;
+        }
     }
 }

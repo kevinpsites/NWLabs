@@ -3,7 +3,7 @@
     ViewBag.Title = "Recieving";
 }
 
-<h2>Recieving</h2>
+<h2>Receiving</h2>
 
 <form action="/action_page.php">
     
@@ -17,6 +17,6 @@
         <input type="number" class="form-control" id="OrdID">
     </div>
    
-    <button type="reset" class="btn btn-default">Submit</button>
+    @Html.ActionLink("Submit", "RecievingInformation", "Singapore", null, new { @class = "btn btn-default" })
 </form>
 

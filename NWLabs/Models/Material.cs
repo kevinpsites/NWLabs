@@ -22,7 +22,7 @@ namespace NWLabs.Models
     
         public int MaterialID { get; set; }
         public string MaterialName { get; set; }
-        public Nullable<decimal> MaterialCost { get; set; }
+        public decimal MaterialCost { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Test_Materials> Test_Materials { get; set; }

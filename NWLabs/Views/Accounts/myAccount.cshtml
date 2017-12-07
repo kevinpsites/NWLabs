@@ -1,6 +1,8 @@
 ﻿@model NWLabs.Models.myAccount
 @{
     ViewBag.Title = "My Account";
+    decimal? balance = new decimal?();
+    balance = 0;
 }
 
 <h2>My Account</h2>
@@ -13,11 +15,14 @@
         </div>
 
         <div class="col-md-3">
-            @if (Model.account.Balance == 0)
-            {
-                Model.account.Balance = 0;
+            @foreach (var orders2 in Model.orders)
+            { 
+                 foreach(var invoice in orders2.order.Invoices)
+                 {
+                     balance += invoice.InvoiceTotal;
+                 };
             }
-            <h3 style="text-align:right;float:right;">Balance: $1500.00</h3> 
+            <h3 style="text-align:right;float:right;">Balance: $@balance</h3> 
         </div>
     </div>
 
@@ -37,7 +42,11 @@
                         <td><a href=@Url.Action("myOrders", "Accounts",new { id = item.order.OrderID }, null)>Order #@item.order.OrderID</a></td>
                         <td>@Html.ActionLink("Summary Report", "Report", "Accounts", new { id = item.order.SummaryReport },null) </td>
                         <td>@item.status.StatusDesc</td>
-                        <td>Payment Due: $500.00</td>
+                            @foreach (var invoice in item.order.Invoices)
+                            {
+                                <td>Payment Due: $@invoice.InvoiceTotal</td>
+                            }
+                        
                     </tr>
                    
                 }

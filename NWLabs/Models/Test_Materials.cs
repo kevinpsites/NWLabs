@@ -23,7 +23,7 @@ namespace NWLabs.Models
         public int TestMaterialID { get; set; }
         public Nullable<int> TestID { get; set; }
         public Nullable<int> MaterialID { get; set; }
-        public Nullable<int> Quantity { get; set; }
+        public int Quantity { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }

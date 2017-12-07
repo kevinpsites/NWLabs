@@ -14,13 +14,13 @@ namespace NWLabs.Controllers
             return View();
         }
 
-        // GET: Default
+        // record info from order recieved.
         public ActionResult Recieving()
         {
 
             return View();
         }
-        // GET: Default
+        // virew receiving info for the order
         public ActionResult RecievingInformation()
         {
 

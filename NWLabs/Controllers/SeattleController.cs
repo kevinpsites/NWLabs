@@ -14,11 +14,13 @@ namespace NWLabs.Controllers
             return View();
         }
 
+        //return order form for order
         public ActionResult OrderForm()
         {
             return View();
         }
 
+        //view summary report for order
         public ActionResult SummaryReport()
         {
             return View();

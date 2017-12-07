@@ -14,9 +14,14 @@
         </div>
         <div class="col-md-3">
             <div class="input-group">
-                <h4>Balance: $500</h4>
+                @foreach (var item in Model.order.Invoices)
+                {
+                    <h4>Total Cost: $@item.InvoiceTotal</h4>
+                }
+                
+                </div>
+           </div> 
         </div>
-    </div>    
 
         <div class="row">
            
@@ -133,7 +138,7 @@
                                    {<tr>
                                         <td>@test.Test.TestName</td>
                                         <td>@test.Status.StatusDesc</td>
-                                        <td></td>
+                                        <td>@Html.ActionLink("Report", "Report", "Accounts")</td>
                                         </tr>
 
 

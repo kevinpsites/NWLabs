@@ -31,14 +31,17 @@ namespace NWLabs.Controllers
             return View();
         }
 
+        //view the catalog of the assays
         public ActionResult Catalog()
         {
             Catalog catalog = new Catalog();
             
             List<Assay_Tests> assayList = new List<Assay_Tests>();
 
+            //take all assays and put them as a list.
             catalog.assay = db.Assays.ToList();
 
+            //break down each assay to individual assay and tests
             foreach (var item in catalog.assay)
             {
                 Assay_Tests atest = new Assay_Tests();
@@ -46,6 +49,7 @@ namespace NWLabs.Controllers
                 assayList.Add(atest);
             }
 
+            //for each assay find all the individual tests required
             foreach (var item in assayList)
             {
                 item.test = db.Tests.SqlQuery("Select * " +
@@ -57,6 +61,7 @@ namespace NWLabs.Controllers
                "Where Assays.AssayID = '" + item.assay.AssayID + "'").AsEnumerable();
             }
 
+            //add all the test and assay information to the catalog model
             catalog.assay_tests = assayList.ToList();
        
             

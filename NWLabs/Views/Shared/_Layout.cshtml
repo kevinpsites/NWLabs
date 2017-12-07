@@ -31,15 +31,19 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Catalog", "Catalog", "Home")</li>
-                    @if (User.Identity.IsAuthenticated)
+                    @if ((User.Identity.IsAuthenticated) && (User.Identity.Name == "Client"))
                     {
                         <li>@Html.ActionLink("My Account", "myAccount", "Accounts")</li>
                     }
-                    
+                    else if ((User.Identity.IsAuthenticated) && (User.Identity.Name == "LabTech"))
+                    {
+                        <li>@Html.ActionLink("Receiving", "Recieving", "Singapore")</li>
+                    }
+
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    @if (User.Identity.IsAuthenticated)
+                    @if ((User.Identity.IsAuthenticated))
                 {
 
                         <li class="dropdown">

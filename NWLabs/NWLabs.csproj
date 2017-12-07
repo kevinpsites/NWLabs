@@ -340,7 +340,7 @@
     <Content Include="Views\Seattle\OrderForm.cshtml" />
     <Content Include="Views\Seattle\SummaryReport.cshtml" />
     <Content Include="Views\Accounts\myOrders.cshtml" />
-    <Content Include="Views\Orders\AddOrder.cshtml" />
+    <Content Include="Views\Orders\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

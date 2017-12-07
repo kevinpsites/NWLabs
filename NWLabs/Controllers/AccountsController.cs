@@ -10,6 +10,7 @@ using NWLabs.Models;
 
 namespace NWLabs.Controllers
 {
+    [Authorize]
     public class AccountsController : Controller
     {
         private NWlabsContext db = new NWlabsContext();
@@ -124,6 +125,7 @@ namespace NWLabs.Controllers
             base.Dispose(disposing);
         }
 
+        //view account of customer
         public ActionResult myAccount()
         {
             myAccount myAccount = new myAccount();
@@ -133,9 +135,10 @@ namespace NWLabs.Controllers
             List<Orders> AccountOrders = new List<Orders>();
             
             
-            
+            //find account based on id stored at login
             myAccount.account = db.Accounts.Find(HelperController.GetCustomer().account.AccountID);
 
+            //find all the orders for account
             if (myAccount.account != null)
             {
 
@@ -162,6 +165,7 @@ namespace NWLabs.Controllers
             
         }
 
+        //view all account orders
         public ActionResult myOrders(int id)
         {
             myOrders myOrder = new myOrders();
@@ -170,74 +174,66 @@ namespace NWLabs.Controllers
             myOrder.order = db.Orders.Find(id);
             myOrder.status = db.Status.Find(myOrder.order.OrderStatusID);
 
+            //variables used
             List<Assay> myDBAssayList = new List<Assay>();
             List<Assay_Tests> orderAssayList = new List<Assay_Tests>();
             List<TestsStatus> myTestsStatus = new List<TestsStatus>();
+            decimal? materialCost = new decimal?();
+            decimal? quantity = new decimal?();
+            decimal? totalMaterialCost = new decimal?();
+            decimal? empWage = new decimal?();
+            decimal? time = new decimal?();
+            decimal? assayTotal = new decimal?();
+            List<decimal?> assayTotalList = new List<decimal?>();
+            decimal? orderTotal = new decimal?();
+            orderTotal = 0;
 
-            //find all the assays that are associated with that order
-            myDBAssayList = db.Database.SqlQuery<Assay>(
-                "Select * " +
-                "From Assays " +
-                "inner join Order_Details on " +
-                "Assays.AssayID = Order_Details.AssayID " +
-                "Where Order_Details.OrderID = '" + id + "'"
-                ).ToList();
-            
-            //create the individual assay details for every array found and the status of each assay
-            foreach (var item in myDBAssayList)
+            //find each assay in each order
+            foreach (var AssayorderDetails in myOrder.order.Order_Details)
             {
-                Assay_Tests atest = new Assay_Tests();
-                atest.assay = db.Assays.Find(item.AssayID);
-                int statusnumber =  db.Database.SqlQuery<int>(
-                    "Select OrderDetailStatus " +
-                    "FROM Order_Details " +
-                    "Where OrderID = '" + myOrder.order.OrderID + "' AND AssayID = '" + atest.assay.AssayID + "'"
-                    ).FirstOrDefault();
-                
-                atest.status = db.Status.Find(statusnumber);
-               
-                orderAssayList.Add(atest);
-            }
-
-            myOrder.assay_tests = orderAssayList.ToList();
-
-            //add test details for every individual assay
-            foreach (var item in myOrder.assay_tests)
-            {
-                List<Test> DBTest = new List<Test>();
-                
-                DBTest = db.Tests.SqlQuery("Select * " +
-               "FROM Tests " +
-               "INNER JOIN Assay_Tests ON " +
-               "Assay_Tests.TestID = Tests.TestID " +
-               "Inner Join Assays ON " +
-               "Assays.AssayID = Assay_Tests.AssayID " +
-               "Where Assays.AssayID = '" + item.assay.AssayID + "'").ToList();
-
-                foreach (var test in DBTest)
+                assayTotalList.Clear();
+                foreach (var testOrderDetails in AssayorderDetails.Test_Order_Details)
                 {
-                    TestsStatus myTests = new TestsStatus();
-                    myTests.test = db.Tests.Find(test.TestID);
-                    int testStatusID = db.Database.SqlQuery<int>(
-                        "Select TestStatusID " +
-                        "From Test_Order_Details " +
-                        "inner join Order_Details ON " +
-                        "Order_Details.OrderDetailID = Test_Order_Details.OrderDetailID " +
-                        "Where Order_Details.OrderID = '" + myOrder.order.OrderID + "' AND " +
-                        "Order_Details.AssayID = '" + item.assay.AssayID + "' AND " +
-                        "Test_Order_Details.TestID = '" + myTests.test.TestID + "'"
-                        ).FirstOrDefault();
+                    //find all tests for each assay
 
-                    myTests.status = db.Status.Find(testStatusID);
+                    //get material cost for each test - could be multiple
+                    totalMaterialCost = 0;
+                    foreach (var testMaterials in testOrderDetails.Test.Test_Materials)
+                    {
+                        materialCost = testMaterials.Material.MaterialCost;
+                        quantity = (decimal)testMaterials.Quantity;
 
-                    myTestsStatus.Add(myTests);
+                        totalMaterialCost += materialCost * quantity;
+                    }
+
+                    //find employee wage
+                    empWage = 0;
+                    foreach (var empTest in testOrderDetails.Employee_Tests)
+                    {
+                        empWage += empTest.Employee.Title.Wage;
+                       
+                    }
+                    
+                    //find time for each test
+                    time = ((decimal)testOrderDetails.EndTime.Value.Hour) - ((decimal)testOrderDetails.StartTime.Value.Hour);
+
+                    //add them upp and store them
+                    assayTotal = (time * empWage.GetValueOrDefault(0m)) + totalMaterialCost;
+                    assayTotalList.Add(assayTotal);
                 }
-
-                item.testsStatus = myTestsStatus.AsEnumerable();
+               
+                //make a total amount for the order by summing assays
+                foreach (var assay in assayTotalList)
+                {
+                    orderTotal += assay;
+                }
             }
 
-            
-
+            //invice total based on sum of order totals
+            foreach (var item in myOrder.order.Invoices)
+            {
+                item.InvoiceTotal = orderTotal;
+            }
             
             return View(myOrder);
         }
