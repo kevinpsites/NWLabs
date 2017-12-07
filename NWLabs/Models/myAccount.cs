@@ -8,6 +8,7 @@ namespace NWLabs.Models
     public class myAccount
     {
         public Account account { get; set; }
-        public IEnumerable<Order> order { get; set; }
+        public IEnumerable<Orders> orders { get; set; }
+        
     }
 }

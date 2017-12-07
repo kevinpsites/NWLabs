@@ -19,9 +19,19 @@ namespace NWLabs.Controllers
         }
 
         
-        public ActionResult AddOrder()
+        public ActionResult AddOrder(int id)
         {
-            return View();
+            Assay assay = new Assay();
+            IEnumerable<Assay> eAssay;
+
+            assay = db.Assays.Find(id);
+
+
+            eAssay = HelperController.SetOrderAssayList(assay).AsEnumerable();
+
+
+
+            return View(eAssay);
         }
     }
 }

@@ -165,6 +165,7 @@
       <DependentUpon>NWLDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Assay_Tests.cs" />
+    <Compile Include="Models\TestsStatus.cs" />
     <Compile Include="Models\Base_Prices.cs">
       <DependentUpon>NWLDatabase.tt</DependentUpon>
     </Compile>
@@ -195,6 +196,7 @@
       <DependentUpon>NWLDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\myAccount.cs" />
+    <Compile Include="Models\myOrders.cs" />
     <Compile Include="Models\NWLDatabase.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -213,6 +215,7 @@
     <Compile Include="Models\Order.cs">
       <DependentUpon>NWLDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Orders.cs" />
     <Compile Include="Models\Order_Details.cs">
       <DependentUpon>NWLDatabase.tt</DependentUpon>
     </Compile>
@@ -252,6 +255,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Dimages\NorthWestLogo.png" />
@@ -269,8 +274,6 @@
       <DependentUpon>NWLDatabase.edmx</DependentUpon>
       <LastGenOutput>NWLDatabase.cs</LastGenOutput>
     </Content>
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -281,7 +284,17 @@
     <Content Include="Models\NWLDatabase.edmx.diagram">
       <DependentUpon>NWLDatabase.edmx</DependentUpon>
     </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -314,20 +327,12 @@
     <Content Include="Views\Accounts\Index.cshtml" />
     <Content Include="Views\Home\Catalog.cshtml" />
     <Content Include="Views\Accounts\myAccount.cshtml" />
+    <Content Include="Views\Accounts\myOrders.cshtml" />
+    <Content Include="Views\Orders\AddOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Helper\" />
-    <Folder Include="Views\Orders\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

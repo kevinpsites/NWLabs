@@ -11,7 +11,9 @@ namespace NWLabs.Controllers
     {
         private NWlabsContext db = new NWlabsContext();
         static Customer Customer = new Customer();
-
+        public static List<Assay> OrderAssayList = new List<Assay>();
+        
+        
         public static string GetName()
         {
             string name;
@@ -46,5 +48,17 @@ namespace NWLabs.Controllers
 
             return password;
         }
+
+        public static List<Assay> GetOrderAssayList()
+        {
+           return OrderAssayList;
+        }
+
+        public static List<Assay> SetOrderAssayList(Assay assay)
+        {
+            OrderAssayList.Add(assay);
+            return OrderAssayList;
+        }
+
     }
 }

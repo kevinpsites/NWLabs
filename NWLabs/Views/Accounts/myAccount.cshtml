@@ -1,35 +1,47 @@
-﻿
+﻿@model NWLabs.Models.myAccount
 @{
-    ViewBag.Title = "myAccount";
+    ViewBag.Title = "My Account";
 }
 
-<h2>myAccount</h2>
+<h2>My Account</h2>
 <div class="container">
     <div class="row">
         <div class="col-md-9">
-            MY ACCOUNT
+            
+            <h3 style="text-align:left;float:left;">@Model.account.CompanyName</h3>
+            
         </div>
 
         <div class="col-md-3">
-            BALANCE:
+            @if (Model.account.Balance == 0)
+            {
+                Model.account.Balance = 0;
+            }
+            <h3 style="text-align:right;float:right;">Balance: $1500.00</h3> 
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-12">
+           
             <table class="table">
-                <th>Orders</th>
+                <th>Order #</th>
                 <th>Reports</th>
                 <th>Status</th>
                 <th>Payment Due</th>
 
-
-                <tr>
-                    <td>Order#</td>
-                    <td>Summary Report</td>
-                    <td>Order Status</td>
-                    <td>Payment Due: $</td>
-                </tr>
+                @foreach (var item in Model.orders)
+                {
+                
+                    <tr>
+                        <td><a href=@Url.Action("myOrders", "Accounts",new { id = item.order.OrderID }, null)>Order #@item.order.OrderID</a></td>
+                        <td>@Html.ActionLink("Summary Report", "Report", "Accounts", new { id = item.order.SummaryReport },null) </td>
+                        <td>@item.status.StatusDesc</td>
+                        <td>Payment Due: $500.00</td>
+                    </tr>
+                   
+                }
+              
        
             </table>
         </div>

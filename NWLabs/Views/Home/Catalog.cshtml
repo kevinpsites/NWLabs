@@ -3,10 +3,15 @@
     ViewBag.Title = "Catalog";
 }
 
-<div class="containe-fluid">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <p style="color:white;">j</p>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-9">
-            <h2>Catalog</h2>
+            <h2>Assay Catalog</h2>
         </div>
         <div class="col-md-3">
             <div class="input-group">
@@ -25,17 +30,18 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse-@item.assay.AssayID">
-                                <h4 class="panel-title" style="display:inline;">
+                                <h4 class="panel-title" style="display:inline; color:black;">
                                     @item.assay.AssayName
-                                </h4> -
-                                <p class="text-muted" style="display:inline;">@item.assay.AssayProtocol</p>
+                                </h4> 
+                                <h4 class="panel-title pull-right" style="display:inline; color:black;">Quote Price: $@(item.assay.Order_Details.Count)00.00</h4>
+                                
+
                             </a>
                         </div>
 
                         <div id="collapse-@item.assay.AssayID" class="panel-collapse collapse">
                             <div class="panel-body">
-                                @Html.ActionLink("Add Assay to Order", "AddOrder", "Orders", new { id = item.assay.AssayID }, new { @class = "test=right" })
-                                
+                                <h4>Assay Tests:</h4>
                                 <br />
                                 @foreach (var test in item.test)
                                 {
@@ -44,7 +50,7 @@
                                             <a data-toggle="collapse" data-parent="#accordion2" href="#test-@test.TestID@item.assay.AssayID">
                                                 <h4 class="panel-heading" style="display:inline;">
                                                     @test.TestName
-                                                </h4> -
+                                                </h4> 
                                                 <p class="text-muted" style="display:inline;">@item.assay.AssayProtocol</p>
                                             </a>
                                         </div>
@@ -60,6 +66,9 @@
                                     </div>
 
                                 }
+                                <br />
+                                @Html.ActionLink("Add Assay to Order", "AddOrder", "Orders", new { id = item.assay.AssayID }, new { @class = "text-right pull-right btn btn-primary", @style = "display:inline;" })
+
 
                             </div>
                         </div>

@@ -37,6 +37,8 @@ namespace NWLabs.Controllers
                 ).FirstOrDefault();
 
             Customer.credential = db.Credentials.Find(Customer.contact.CredID);
+            Customer.role = db.Roles.Find(Customer.credential.RoleID);
+            Customer.account = db.Accounts.Find(Customer.contact.AccountID);
 
            /* sPassword = db.Owners.SqlQuery(
                  "Select ownerID, ownerLastName, ownerFirstName, ownerEmail, ownerPassword " +
