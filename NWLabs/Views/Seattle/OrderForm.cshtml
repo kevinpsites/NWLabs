@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "OrderForm";
+}
+
+<link href="~/Content/rachelStyles.css" rel="stylesheet" />
+
+<h2>Order Form</h2>
+<!--Customer must enter the following: Name of the compound, (the assays wanted are already selected), whether it’s a rush order, 
+    compound weight, maximum tolerated dose, and approve/disapprove conditional testing -->
+<form>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Compound Name</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Compound">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect2">Assays Selected</label>
+        <select multiple class="form-control" disabled id="exampleFormControlSelect2">
+            <option>Aerobic Plate Count</option>
+            <option>Salmonella FDA</option>
+            <option>Blood Culture</option>
+            <option>Ammonia</option>
+        </select>
+    </div>
+    <div class="form-check rushorder">
+        <label class="form-check-label">
+            <input type="checkbox" class="form-check-input">
+            Rush Order <small id="emailHelp" class="form-text text-muted">Extra Fees Apply</small>
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Compound Weight in Miligrams</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter weight in miligrams">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Maximum Tolerated Dose</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter maximum tolerated dose">
+    </div>
+
+    <label for="exampleInputEmail1">Conditional Testing Approval</label>
+    <div class="radio">
+        <label><input type="radio" name="optradio">Approve All Conditional Testing</label>
+    </div>
+    <div class="radio">
+        <label><input type="radio" name="optradio">Disapprove All Conditional Testing</label>
+    </div>
+    <div class="radio disabled">
+        <label><input type="radio" name="optradio">Undecided - Approve/Disapprove when results are available</label>
+    </div>
+    <div class="orderdisclaimer">
+        <small id="emailHelp" class="form-text text-muted">
+            Choosing undecided may slow down your delivery. If compound is declared
+            active, all testing progress will stop until your approval/disapproval is submitted. If approval/disapproval is submitted
+            late, it will delay the deliverables.
+        </small>
+    </div>
+    <br/>
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+

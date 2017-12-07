@@ -151,9 +151,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Controllers\SingaporeController.cs" />
     <Compile Include="Controllers\HelperController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\SeattleController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -260,6 +262,11 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Dimages\NorthWestLogo.png" />
+    <Content Include="Content\Dimages\Pentelute-Lab-MIT-Landing-PageDSC03555.jpg" />
+    <Content Include="Content\Dimages\used-lab-equipment.jpg" />
+    <Content Include="Content\customerservice.jpg" />
+    <Content Include="Content\labbackground.jpg" />
+    <Content Include="Content\rachelStyles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -327,11 +334,16 @@
     <Content Include="Views\Accounts\Index.cshtml" />
     <Content Include="Views\Home\Catalog.cshtml" />
     <Content Include="Views\Accounts\myAccount.cshtml" />
+    <Content Include="Views\Singapore\Recieving.cshtml" />
+    <Content Include="Views\Singapore\RecievingInformation.cshtml" />
+    <Content Include="Views\Seattle\OrderForm.cshtml" />
+    <Content Include="Views\Seattle\SummaryReport.cshtml" />
     <Content Include="Views\Accounts\myOrders.cshtml" />
     <Content Include="Views\Orders\AddOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Default\" />
     <Folder Include="Views\Helper\" />
   </ItemGroup>
   <ItemGroup>

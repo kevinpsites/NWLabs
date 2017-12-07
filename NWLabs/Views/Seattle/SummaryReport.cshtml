@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "SummaryReport";
+}
+
+<link href="~/Content/rachelStyles.css" rel="stylesheet" />
+
+<h2>Summary Report</h2>
+
+<div class="row">
+    <div class="col-xs-6">
+        <div class="form-group summaryreportbox">
+            <label for="comment">Executive Summary:</label>
+            <textarea class="form-control" rows="5" id="comment"></textarea>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <form>
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Choose Graph (optional)</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Assay Name</label>
+            <input type="email" disabled class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Assay 152">
+        </div>
+        <div class="form-group">
+            <label for="comment">Assay Summary:</label>
+            <textarea class="form-control" rows="5" id="comment"></textarea>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <form>
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Choose Graph</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Test Name</label>
+            <input type="email" disabled class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Test DiscoveryScreen (DS)">
+        </div>
+        <div class="form-group">
+            <label for="comment">Test Summary:</label>
+            <textarea class="form-control" rows="5" id="comment"></textarea>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <form>
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Choose Graph</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Test Name</label>
+            <input type="email" disabled class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ImmunoScreen (IS)">
+        </div>
+        <div class="form-group">
+            <label for="comment">Test Summary:</label>
+            <textarea class="form-control" rows="5" id="comment"></textarea>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <form>
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Choose Graph</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+<div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</div>

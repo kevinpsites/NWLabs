@@ -1,0 +1,37 @@
+﻿.aboutrow {
+    padding-top: 80px;
+    text-align: center;
+}
+
+.aboutstripe   {
+    background-color: gainsboro;
+}
+
+.abouttitle   {
+    text-align: center;
+}
+
+.contactdisclaimer  {
+    background-color: gainsboro;
+    text-align: center;
+    width: 100%;
+    margin-top: 25px;
+    padding: 10px;
+}
+
+.contactphoto   {
+    height: 100%;
+}
+
+.orderdisclaimer    {
+    width: 50%;
+}
+
+.rushorder  {
+    padding-top: 10px;
+    margin-bottom: 20px;
+}
+
+.summaryreportbox   {
+    width: 100%;
+}
